@@ -1,7 +1,8 @@
-import 'package:clean_architecture_auth/features/auth/presentation/screens/sign_in_screen.dart';
+import 'package:clean_architecture_auth/features/auth/presentation/screens/login_screen.dart';
 import 'package:clean_architecture_auth/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,12 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return ProviderScope(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            primarySwatch: Colors.blue
+        ),
+        home: const LoginScreen(),
       ),
-      home: const SignInScreen(),
     );
   }
 }
