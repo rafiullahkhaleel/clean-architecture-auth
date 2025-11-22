@@ -1,13 +1,15 @@
-import 'package:clean_architecture_auth/features/auth/presentation/screens/login_screen.dart';
 import 'package:clean_architecture_auth/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'features/auth/presentation/screens/login_screen.dart';
+import 'features/auth/presentation/screens/signup_screen.dart';
+import 'features/auth/presentation/screens/home_screen.dart';
 
-void main()async{
+void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,15 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            primarySwatch: Colors.blue
-        ),
-        home: const LoginScreen(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: "/login",
+      routes: {
+        "/login": (_) => LoginScreen(),
+        "/signup": (_) => SignupScreen(),
+        "/home": (_) => HomeScreen(),
+      },
     );
   }
 }
