@@ -6,6 +6,8 @@ class LoginScreen extends ConsumerWidget {
   final email = TextEditingController();
   final pass = TextEditingController();
 
+  LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
